@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="img/brasa.webp">
+<link rel="preload" as="image" href="img/taules.webp">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -34,7 +34,8 @@
     <nav class="nav" aria-label="Principal">
       <a href="#casa" data-i18n="nav.about">La casa</a>
       <a href="#carta" data-i18n="nav.menu">Carta</a>
-      <a href="#on-som" data-i18n="nav.find">Horari i ubicació</a>
+      <a href="#galeria" data-i18n="nav.gallery">Galeria</a>
+      <a href="#on-som" data-i18n="nav.find">On som</a>
     </nav>
     <div class="idiomes" role="group" aria-label="Idioma">
       <button type="button" data-lang="ca" aria-pressed="true">CA</button>
@@ -58,7 +59,7 @@
       <p class="hero-nota" data-i18n="hero.note">Reserves només per telèfon.</p>
     </div>
     <div class="hero-foto">
-      <img src="img/brasa.webp" width="918" height="1020" alt="Dos talls de carn a la brasa amb os, amb patates, pebrots i tomàquets a la planxa" data-i18n-alt="alt.grill" fetchpriority="high">
+      <img src="img/taules.webp" width="918" height="1020" alt="Taules altes de fusta davant d'una paret de maó groc plena de cartells i fotos emmarcades" data-i18n-alt="alt.tables" fetchpriority="high">
     </div>
   </section>
 
@@ -130,6 +131,22 @@
         <h3 data-i18n="menu.grill">A la brasa</h3>
         <p data-i18n="menu.grillText">La carta de brasa i les postres encara no són en aquesta web.</p>
         <p class="aviat" data-i18n="menu.soon">Proper aviat</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="galeria" id="galeria">
+    <div class="galeria-cap">
+      <p class="sobretitol" data-i18n="gal.kicker">Galeria</p>
+      <h2 data-i18n="gal.title">Brasa, empanades i samarretes</h2>
+    </div>
+    <div class="galeria-graella">
+      <img src="img/brasa.webp" width="918" height="1020" loading="lazy" alt="Dos talls de carn a la brasa amb os, amb patates, pebrots i tomàquets a la planxa" data-i18n-alt="alt.grill">
+      <img src="img/empanades.webp" width="765" height="1020" loading="lazy" alt="Quatre empanades fregides en una safata de ceràmica" data-i18n-alt="alt.empanadas">
+      <img src="img/samarreta.webp" width="918" height="1020" loading="lazy" alt="Samarreta de futbol emmarcada a la paret, amb el dorsal 10" data-i18n-alt="alt.shirt">
+      <div class="cromos">
+        <img src="img/graellada.webp" width="162" height="203" loading="lazy" alt="Graellada de carn amb xoriço, botifarra negra, pebrots i patates" data-i18n-alt="alt.mixed">
+        <img src="img/tall.webp" width="162" height="270" loading="lazy" alt="Tall de carn a la brasa amb patates fregides" data-i18n-alt="alt.steak">
       </div>
     </div>
   </section>

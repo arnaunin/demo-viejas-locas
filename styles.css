@@ -180,6 +180,20 @@ h1 {
   font-size: .8125rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
 }
 
+/* Galeria */
+.galeria { background: var(--paper-2); padding: clamp(56px, 8vw, 104px) max(var(--vora), calc((100vw - var(--ample)) / 2)); }
+.galeria-cap { margin-bottom: clamp(28px, 4vw, 48px); }
+.galeria-graella { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) 210px; gap: 16px; }
+.galeria-graella > img { width: 100%; height: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.cromos {
+  background: var(--negre);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+  padding: 20px;
+}
+.cromos img { width: 140px; border: 5px solid var(--paper); }
+.cromos img:first-child { transform: rotate(-3deg); }
+.cromos img:last-child { transform: rotate(2.5deg); }
+
 /* Horari i ubicació */
 .on-som {
   background: var(--negre); color: var(--paper);
@@ -222,11 +236,16 @@ address { font-style: normal; font-size: 1.1875rem; margin: 28px 0 24px; }
   .carta-cos { grid-template-columns: 1fr; }
   .carta-foto { position: static; grid-row: auto; margin-right: 14px; }
   .on-som { grid-template-columns: 1fr; }
+  .galeria-graella { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cromos { grid-column: 1 / -1; flex-direction: row; gap: 28px; padding: 28px 16px; }
   .mapa { min-height: 340px; }
   .cinta { font-size: .75rem; letter-spacing: .2em; }
 }
 @media (max-width: 480px) {
   .accions .boto { width: 100%; }
+  .galeria-graella { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .galeria-graella > img:first-child { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
+  .cromos img { width: 120px; }
   .casa-fotos .f2 { margin-top: 28px; }
   .marca-nom { font-size: .75rem; letter-spacing: .2em; }
 }
