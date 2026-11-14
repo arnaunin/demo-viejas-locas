@@ -4,20 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Viejas Locas by Pampa · Cuina argentina a Calafell</title>
-<meta name="description" content="Proposta de web per a Viejas Locas by Pampa, restaurant argentí a Calafell: milaneses, empanades i carn a la brasa.">
+<title>Viejas Locas by Pampa · Bodegó argentí a Calafell</title>
+<meta name="description" content="Proposta de web per a Viejas Locas by Pampa, bodegó argentí a Calafell: brases, empanades i milaneses.">
 <meta name="theme-color" content="#131210">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23131210'/%3E%3Ctext x='32' y='43' font-family='sans-serif' font-size='30' text-anchor='middle' fill='%23f4b824'%3EVL%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/taules.webp">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 <a class="skip" href="#contingut" data-i18n="skip">Ves al contingut</a>
 
-<div class="top">
+<div class="top" id="top">
   <aside class="proposta" aria-label="Avís de proposta">
     <p>Proposta de web per a Viejas Locas · feta per Arnau Nin</p>
     <p class="proposta-links">
@@ -49,34 +49,42 @@
 
   <section class="hero" id="inici">
     <div class="hero-text">
-      <img class="hero-logo" src="img/logo.webp" width="729" height="729" alt="Viejas Locas by Pampa">
-      <h1 data-i18n="hero.title">Cuina argentina a Calafell</h1>
-      <p class="hero-intro" data-i18n="hero.intro">Milaneses, empanades i carn a la brasa en una sala petita on es respira futbol.</p>
-      <div class="accions">
-        <a class="boto boto-ple" href="tel:+34633758668" data-i18n="cta.call">Truca per reservar · 633 75 86 68</a>
+      <img class="hero-logo puja" src="img/logo.webp" width="729" height="729" alt="Viejas Locas by Pampa">
+      <h1 class="puja" data-i18n="hero.title">Bodegó argentí a Calafell</h1>
+      <p class="hero-intro puja" data-i18n="hero.intro">Brases, empanades i milaneses, amb taula parada i el cor obert.</p>
+      <div class="accions puja">
+        <a class="boto boto-ple" href="https://mirestaurante.app/viejas-locas/reservas" target="_blank" rel="noopener" data-i18n="cta.book">Reserva taula</a>
         <a class="boto" href="#carta" data-i18n="cta.menu">Mira la carta</a>
       </div>
-      <p class="hero-nota" data-i18n="hero.note">Reserves només per telèfon.</p>
+      <p class="estat puja" id="estat" aria-live="polite"></p>
     </div>
-    <div class="hero-foto">
-      <img src="img/taules.webp" width="918" height="1020" alt="Taules altes de fusta davant d'una paret de maó groc plena de cartells i fotos emmarcades" data-i18n-alt="alt.tables" fetchpriority="high">
+    <div class="hero-foto" id="hero-fotos">
+      <img class="on" src="img/taules.webp" width="918" height="1020" alt="Taules altes de fusta davant d'una paret de maó groc plena de cartells i fotos emmarcades" data-i18n-alt="alt.tables" fetchpriority="high">
+      <img src="img/brasa.webp" width="918" height="1020" alt="" loading="lazy">
+      <img src="img/sala.webp" width="765" height="1020" alt="" loading="lazy">
+      <img src="img/milanesa.webp" width="918" height="1009" alt="" loading="lazy">
     </div>
   </section>
 
   <div class="cinta" aria-hidden="true">
-    <span>Milanesas</span><span>Empanadas</span><span>Choripán</span><span>Parrilla</span><span>Fútbol</span>
+    <div class="cinta-pista">
+      <span>Milanesas</span><span>Empanadas</span><span>Provoletas</span><span>Parrilla</span><span>Fútbol</span><span>Dulce de leche</span>
+      <span>Milanesas</span><span>Empanadas</span><span>Provoletas</span><span>Parrilla</span><span>Fútbol</span><span>Dulce de leche</span>
+      <span>Milanesas</span><span>Empanadas</span><span>Provoletas</span><span>Parrilla</span><span>Fútbol</span><span>Dulce de leche</span>
+      <span>Milanesas</span><span>Empanadas</span><span>Provoletas</span><span>Parrilla</span><span>Fútbol</span><span>Dulce de leche</span>
+    </div>
   </div>
 
   <section class="casa" id="casa">
     <div class="casa-text">
       <p class="sobretitol" data-i18n="about.kicker">La casa</p>
-      <h2 data-i18n="about.title">Un racó de l'Argentina al carrer Mallorca</h2>
-      <p data-i18n="about.p1">Viejas Locas és un restaurant argentí a Calafell, a tocar de la platja. La carta gira al voltant de la milanesa, les empanades i la carn a la brasa.</p>
-      <p data-i18n="about.p2">A les parets hi ha banderins, samarretes i fotos emmarcades del futbol argentí. La sala és petita, així que val la pena trucar abans de venir.</p>
+      <h2 data-i18n="about.title">Un racó de l'Argentina a Calafell</h2>
+      <p data-i18n="about.p1">Viejas Locas és un bodegó argentí dels de tota la vida, a tocar de la platja. Parets plenes d'història, música de fons i una cuina feta com a casa: empanades casolanes, una bona colla de milaneses, talls de carn a la brasa i postres clàssiques.</p>
+      <p data-i18n="about.p2">Els valors de la casa són senzills: bon producte i bon tracte. Aquí es ve a menjar bé, compartir i gaudir com abans.</p>
       <ul class="fets">
-        <li data-i18n="about.f1">Menja aquí, per emportar o a domicili</li>
-        <li data-i18n="about.f2">Reserves per telèfon</li>
-        <li data-i18n="about.f3">Tancat dilluns i dimarts</li>
+        <li data-i18n="about.f1">Reserva en línia o per telèfon</li>
+        <li data-i18n="about.f2">També per emportar i a domicili</li>
+        <li data-i18n="about.f3">Obert de dimecres a dissabte</li>
       </ul>
     </div>
     <div class="casa-fotos">
@@ -89,48 +97,17 @@
     <div class="carta-cap">
       <p class="sobretitol" data-i18n="menu.kicker">Carta</p>
       <h2 data-i18n="menu.title">Les milaneses surten de titulars</h2>
-      <p class="carta-avis" data-i18n="menu.notice">Plats i preus de la carta a domicili publicada pel restaurant (Uber Eats). A sala la carta és més àmplia i els preus poden variar.</p>
+      <p class="carta-avis" data-i18n="menu.notice">Plats i preus de la carta que el restaurant té publicada. Poden haver canviat: confirma'ls al local.</p>
     </div>
 
+    <div class="pestanyes" role="tablist" aria-label="Seccions de la carta" id="pestanyes"></div>
+
     <div class="carta-cos">
-      <figure class="carta-foto">
-        <img src="img/milanesa.webp" width="918" height="1009" loading="lazy" alt="Milanesa napolitana amb pernil, mozzarella i tomàquet, patates fregides i ou ferrat" data-i18n-alt="alt.milanesa">
+      <figure class="carta-foto" id="carta-foto">
+        <img src="img/milanesa.webp" width="918" height="1009" loading="lazy" alt="">
       </figure>
-
-      <div class="grup grup-mila">
-        <h3>Milanesas</h3>
-        <p class="grup-nota" data-i18n="menu.milaNote">Totes de vedella i amb patates fregides.</p>
-        <ol class="plats dorsals">
-          <li><div><h4>Napolitana</h4><p data-i18n="d.napolitana">Salsa napolitana, pernil dolç, tomàquet i mozzarella.</p></div><span class="preu">18,50 €</span></li>
-          <li><div><h4>Fugazza</h4><p data-i18n="d.fugazza">Mozzarella i ceba.</p></div><span class="preu">18,00 €</span></li>
-          <li><div><h4>Chacarera</h4><p data-i18n="d.chacarera">Mozzarella i encenalls de pernil.</p></div><span class="preu">18,50 €</span></li>
-          <li><div><h4>Suprema</h4><p data-i18n="d.suprema">Mozzarella, bacó i pebrot.</p></div><span class="preu">18,50 €</span></li>
-          <li><div><h4>Viejas Locas</h4><p data-i18n="d.vl">Cheddar i bacó.</p></div><span class="preu">18,50 €</span></li>
-          <li><div><h4>Suiza</h4><p data-i18n="d.suiza">Mozzarella.</p></div><span class="preu">18,00 €</span></li>
-          <li><div><h4>Morrona</h4><p data-i18n="d.morrona">Mozzarella, pebrot i olives.</p></div><span class="preu">17,50 €</span></li>
-        </ol>
-      </div>
-
-      <div class="grup">
-        <h3>Empanadas</h3>
-        <ul class="plats">
-          <li><div><h4 data-i18n="d.half">Mitja dotzena</h4><p data-i18n="d.halfD">6 unitats.</p></div><span class="preu">21,00 €</span></li>
-          <li><div><h4 data-i18n="d.dozen">Dotzena</h4><p data-i18n="d.dozenD">12 unitats.</p></div><span class="preu">40,00 €</span></li>
-        </ul>
-      </div>
-
-      <div class="grup">
-        <h3 data-i18n="menu.snacks">Per picar</h3>
-        <ul class="plats">
-          <li><div><h4>Choripán</h4></div><span class="preu">5,00 €</span></li>
-          <li><div><h4 data-i18n="d.croqueta">Croqueta de cecina</h4></div><span class="preu">9,50 €</span></li>
-        </ul>
-      </div>
-
-      <div class="grup grup-brasa">
-        <h3 data-i18n="menu.grill">A la brasa</h3>
-        <p data-i18n="menu.grillText">La carta de brasa i les postres encara no són en aquesta web.</p>
-        <p class="aviat" data-i18n="menu.soon">Proper aviat</p>
+      <div class="grup" role="tabpanel" id="plafo" tabindex="0">
+        <noscript><p>La carta completa és a <a href="https://mirestaurante.app/viejas-locas/carta">la web del restaurant</a>.</p></noscript>
       </div>
     </div>
   </section>
@@ -141,13 +118,21 @@
       <h2 data-i18n="gal.title">Brasa, empanades i samarretes</h2>
     </div>
     <div class="galeria-graella">
-      <img src="img/brasa.webp" width="918" height="1020" loading="lazy" alt="Dos talls de carn a la brasa amb os, amb patates, pebrots i tomàquets a la planxa" data-i18n-alt="alt.grill">
-      <img src="img/empanades.webp" width="765" height="1020" loading="lazy" alt="Quatre empanades fregides en una safata de ceràmica" data-i18n-alt="alt.empanadas">
-      <img src="img/samarreta.webp" width="918" height="1020" loading="lazy" alt="Samarreta de futbol emmarcada a la paret, amb el dorsal 10" data-i18n-alt="alt.shirt">
+      <button type="button" class="foto" data-zoom><img src="img/brasa.webp" width="918" height="1020" loading="lazy" alt="Dos talls de carn a la brasa amb os, amb patates, pebrots i tomàquets a la planxa" data-i18n-alt="alt.grill"></button>
+      <button type="button" class="foto" data-zoom><img src="img/empanades.webp" width="765" height="1020" loading="lazy" alt="Quatre empanades fregides en una safata de ceràmica" data-i18n-alt="alt.empanadas"></button>
+      <button type="button" class="foto" data-zoom><img src="img/samarreta.webp" width="918" height="1020" loading="lazy" alt="Samarreta de futbol emmarcada a la paret, amb el dorsal 10" data-i18n-alt="alt.shirt"></button>
       <div class="cromos">
-        <img src="img/graellada.webp" width="162" height="203" loading="lazy" alt="Graellada de carn amb xoriço, botifarra negra, pebrots i patates" data-i18n-alt="alt.mixed">
+        <img src="img/graellada.webp" width="162" height="203" loading="lazy" alt="Graellada de carn amb xoriço, morcilla, pebrots i patates" data-i18n-alt="alt.mixed">
         <img src="img/tall.webp" width="162" height="270" loading="lazy" alt="Tall de carn a la brasa amb patates fregides" data-i18n-alt="alt.steak">
       </div>
+    </div>
+  </section>
+
+  <section class="crida">
+    <h2 data-i18n="band.title">Vine a viure l'experiència argentina</h2>
+    <div class="accions">
+      <a class="boto boto-negre" href="https://mirestaurante.app/viejas-locas/reservas" target="_blank" rel="noopener" data-i18n="cta.book">Reserva taula</a>
+      <a class="boto" href="tel:+34633758668" data-i18n="cta.call">Truca al 633 75 86 68</a>
     </div>
   </section>
 
@@ -165,22 +150,22 @@
           <tr data-dia="4"><th scope="row" data-i18n="day.4">Dijous</th><td>13–15 h · 20–23 h</td></tr>
           <tr data-dia="5"><th scope="row" data-i18n="day.5">Divendres</th><td>13–15 h · 20–23 h</td></tr>
           <tr data-dia="6"><th scope="row" data-i18n="day.6">Dissabte</th><td>13–15 h · 20–23 h</td></tr>
-          <tr data-dia="0"><th scope="row" data-i18n="day.0">Diumenge</th><td>13–15 h</td></tr>
+          <tr data-dia="0"><th scope="row" data-i18n="day.0">Diumenge</th><td data-i18n="find.closed">Tancat</td></tr>
         </tbody>
       </table>
-      <p class="horari-nota" data-i18n="find.hoursNote">Horari orientatiu: confirma'l per telèfon abans de venir.</p>
 
       <address>
         Carrer Mallorca, 14<br>43820 Calafell (Tarragona)
       </address>
 
       <div class="accions">
-        <a class="boto boto-ple" href="tel:+34633758668" data-i18n="cta.call">Truca per reservar · 633 75 86 68</a>
+        <a class="boto boto-ple" href="https://mirestaurante.app/viejas-locas/reservas" target="_blank" rel="noopener" data-i18n="cta.book">Reserva taula</a>
         <a class="boto" href="https://www.google.com/maps/search/?api=1&query=Viejas+Locas+by+Pampa%2C+Carrer+Mallorca+14%2C+Calafell" target="_blank" rel="noopener" data-i18n="cta.route">Com arribar-hi</a>
       </div>
       <p class="enllacos">
+        <a href="tel:+34633758668">633 75 86 68</a>
         <a href="https://www.instagram.com/viejaslocasbypampa/" target="_blank" rel="noopener">Instagram @viejaslocasbypampa</a>
-        <a href="https://www.ubereats.com/es/store/viejas-locas-by-pampa/M8r6gN3GX9GrV2rc7vS0hA" target="_blank" rel="noopener" data-i18n="find.delivery">Demana a domicili per Uber Eats</a>
+        <a href="https://www.just-eat.es/restaurants-viejas-locas-by-pampa-calafell/menu" target="_blank" rel="noopener" data-i18n="find.delivery">Demana a domicili per Just Eat</a>
       </p>
     </div>
     <div class="mapa">
@@ -197,6 +182,13 @@
   <p><a href="https://arnaunin.netlify.app/" target="_blank" rel="noopener">arnaunin.netlify.app</a></p>
 </footer>
 
-<script src="app.js" defer></script>
+<a class="flotant" id="flotant" href="https://mirestaurante.app/viejas-locas/reservas" target="_blank" rel="noopener" data-i18n="cta.book">Reserva taula</a>
+
+<dialog class="llum" id="llum" aria-label="Foto ampliada">
+  <button type="button" class="llum-tanca" aria-label="Tanca" data-i18n-label="lb.close">×</button>
+  <img alt="">
+</dialog>
+
+<script src="app.js?v=3" defer></script>
 </body>
 </html>
