@@ -25,7 +25,8 @@
       "find.delivery": "Pide a domicilio por Just Eat",
       "day.1": "Lunes", "day.2": "Martes", "day.3": "Miércoles", "day.4": "Jueves", "day.5": "Viernes", "day.6": "Sábado", "day.0": "Domingo",
       "foot.demo": "Esta página es una propuesta de diseño hecha por Arnau Nin. No es la web oficial del restaurante.",
-      "lb.close": "Cerrar",
+      "lb.close": "Cerrar", "car.prev": "Fotos anteriores", "car.next": "Fotos siguientes",
+      "alt.milanesa": "Milanesa napolitana con jamón, mozzarella y tomate, patatas fritas y huevo frito",
       "alt.tables": "Mesas altas de madera ante una pared de ladrillo amarillo llena de carteles y fotos enmarcadas",
       "alt.grill": "Dos cortes de carne a la brasa con hueso, con patatas, pimientos y tomates a la plancha",
       "alt.room": "La sala: mesas montadas, pared de ladrillo amarillo y banderines de clubes argentinos",
@@ -56,7 +57,8 @@
       "find.delivery": "Order delivery on Just Eat",
       "day.1": "Monday", "day.2": "Tuesday", "day.3": "Wednesday", "day.4": "Thursday", "day.5": "Friday", "day.6": "Saturday", "day.0": "Sunday",
       "foot.demo": "This page is a design proposal made by Arnau Nin. It is not the restaurant's official website.",
-      "lb.close": "Close",
+      "lb.close": "Close", "car.prev": "Previous photos", "car.next": "Next photos",
+      "alt.milanesa": "Milanesa napolitana with ham, mozzarella and tomato, fries and a fried egg",
       "alt.tables": "High wooden tables by a yellow brick wall covered in posters and framed photos",
       "alt.grill": "Two bone-in grilled steaks with grilled potatoes, peppers and tomatoes",
       "alt.room": "The dining room: laid tables, a yellow brick wall and Argentine club pennants",
@@ -201,6 +203,17 @@
     tria(CARTA[(i + pas + CARTA.length) % CARTA.length].id, true);
   });
 
+  /* ---------- Cinta de plats i preus ---------- */
+  function pintaCinta() {
+    const pista = $("#cinta-plats"), trossos = [];
+    CARTA.filter(c => ["milanesas", "carnes", "provoletas", "postres"].includes(c.id)).forEach(c => c.plats.forEach(pl => {
+      const prefix = c.id === "milanesas" ? "Milanesa " : c.id === "provoletas" ? "Provoleta " : "";
+      trossos.push([prefix + (pl[lang] || pl.n), preu(pl.p)]);
+    }));
+    const tros = () => trossos.map(([n, p]) => { const s = el("span", "", n); s.append(el("b", "", p)); return s; });
+    pista.replaceChildren(...tros(), ...tros());
+  }
+
   /* ---------- Obert ara? (hora de Calafell) ---------- */
   const TORNS = { 3: [[13, 15], [20, 23]], 4: [[13, 15], [20, 23]], 5: [[13, 15], [20, 23]], 6: [[13, 15], [20, 23]] };
   const DIES = {
@@ -236,7 +249,7 @@
 
   /* ---------- Idiomes ---------- */
   const textos = $$("[data-i18n]"), alts = $$("[data-i18n-alt]"), etiquetes = $$("[data-i18n-label]");
-  T.ca = { "lb.close": "Tanca" };
+  T.ca = { "lb.close": "Tanca", "car.prev": "Fotos anteriors", "car.next": "Fotos següents" };
   textos.forEach(e => { T.ca[e.dataset.i18n] = e.textContent; });
   alts.forEach(e => { T.ca[e.dataset.i18nAlt] = e.alt; });
   const botons = $$("[data-lang]");
@@ -248,7 +261,7 @@
     alts.forEach(e => { e.alt = t[e.dataset.i18nAlt] ?? T.ca[e.dataset.i18nAlt]; });
     etiquetes.forEach(e => e.setAttribute("aria-label", t[e.dataset.i18nLabel]));
     botons.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
-    pintaPestanyes(); pintaPlats(); pintaEstat();
+    pintaPestanyes(); pintaPlats(); pintaEstat(); pintaCinta();
     try { localStorage.setItem("vl-lang", lang); } catch {}
   }
   botons.forEach(b => b.addEventListener("click", () => aplica(b.dataset.lang)));
@@ -270,7 +283,7 @@
   }
 
   /* ---------- Aparició en fer scroll ---------- */
-  const perRevelar = $$(".casa-text > *, .casa-fotos img, .carta-cap > *, .pestanyes, .carta-foto, .galeria-cap > *, .galeria-graella > *, .crida > *, .on-info > *");
+  const perRevelar = $$(".casa-text > *, .casa-fotos img, .carta-cap > *, .pestanyes, .carta-foto, .galeria-cap > *, .carrusel, .crida > *, .on-info > *");
   perRevelar.forEach(e => {
     e.classList.add("revela");
     const germans = [...e.parentElement.children].filter(x => x.classList.contains("revela"));
@@ -301,6 +314,26 @@
   }
   addEventListener("scroll", () => { if (!pendent) { pendent = true; requestAnimationFrame(enScroll); } }, { passive: true });
   enScroll();
+
+  /* ---------- Carrusel de la galeria ---------- */
+  const car = $("#carrusel");
+  if (car) {
+    const pas = () => (car.firstElementChild.offsetWidth + parseFloat(getComputedStyle(car).columnGap || 16));
+    const mou = d => {
+      const fi = car.scrollLeft + car.clientWidth >= car.scrollWidth - 8;
+      const inici = car.scrollLeft <= 8;
+      const left = d > 0 && fi ? 0 : d < 0 && inici ? car.scrollWidth : car.scrollLeft + d * pas();
+      car.scrollTo({ left, behavior: calma ? "auto" : "smooth" });
+    };
+    $("#car-abans").addEventListener("click", () => mou(-1));
+    $("#car-despres").addEventListener("click", () => mou(1));
+    let quiet = false, visible = false;
+    ["pointerenter", "focusin", "touchstart"].forEach(ev => car.addEventListener(ev, () => { quiet = true; }, { passive: true }));
+    ["pointerleave", "focusout"].forEach(ev => car.addEventListener(ev, () => { quiet = false; }));
+    if ("IntersectionObserver" in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; }, { threshold: .4 }).observe(car);
+    if (!calma) setInterval(() => { if (visible && !quiet && !document.hidden && !(llumObert())) mou(1); }, 3200);
+  }
+  function llumObert() { const d = $("#llum"); return d && d.open; }
 
   /* ---------- Foto ampliada ---------- */
   const llum = $("#llum");

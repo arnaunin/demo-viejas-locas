@@ -170,6 +170,10 @@ h1 {
 .cinta:hover .cinta-pista { animation-play-state: paused; }
 @keyframes corre { to { transform: translateX(-50%); } }
 
+.cinta-plats { background: var(--negre); color: var(--paper); }
+.cinta-plats .cinta-pista { animation-direction: reverse; animation-duration: 70s; letter-spacing: .14em; }
+.cinta-plats b { color: var(--groc); font-weight: 600; margin-left: .7em; letter-spacing: .04em; }
+
 /* La casa */
 .casa {
   background: var(--negre); color: var(--paper);
@@ -236,11 +240,24 @@ h1 {
 
 /* Galeria */
 .galeria { background: var(--paper-2); padding: clamp(56px, 8vw, 104px) max(var(--vora), calc((100vw - var(--ample)) / 2)); }
-.galeria-cap { margin-bottom: clamp(28px, 4vw, 48px); }
-.galeria-graella { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) 210px; gap: 16px; }
+.galeria-cap { margin-bottom: clamp(28px, 4vw, 48px); display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; }
+.carrusel-botons { display: flex; gap: 8px; flex: none; }
+.carrusel-botons button {
+  width: 50px; height: 50px; border: 1.5px solid var(--tinta); background: none; cursor: pointer;
+  font-size: 1.25rem; line-height: 1; transition: background .25s, color .25s, transform .2s var(--suau);
+}
+.carrusel-botons button:hover { background: var(--tinta); color: var(--groc); transform: translateY(-2px); }
+.carrusel {
+  display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+  margin-right: calc(max(var(--vora), (100vw - var(--ample)) / 2) * -1);
+  padding-right: max(var(--vora), calc((100vw - var(--ample)) / 2));
+}
+.carrusel::-webkit-scrollbar { display: none; }
+.carrusel > * { flex: 0 0 clamp(230px, 26vw, 330px); scroll-snap-align: start; }
 .foto { padding: 0; border: 0; background: var(--negre); cursor: zoom-in; overflow: hidden; aspect-ratio: 3 / 4; display: block; }
 .foto img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--suau), opacity .4s; }
 .foto:hover img, .foto:focus-visible img { transform: scale(1.07); opacity: .88; }
+.carrusel > .cromos { flex-basis: 210px; }
 .cromos {
   background: var(--negre);
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
@@ -328,17 +345,15 @@ address { font-style: normal; font-size: 1.1875rem; margin: 28px 0 24px; }
   .on-som { grid-template-columns: 1fr; }
   .mapa { min-height: 340px; }
   .cinta-pista { font-size: .75rem; letter-spacing: .2em; }
-  .galeria-graella { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .cromos { grid-column: 1 / -1; flex-direction: row; gap: 28px; padding: 28px 16px; }
   .llum-tanca { top: 8px; right: 8px; }
 }
 @media (max-width: 480px) {
   .accions .boto { width: 100%; }
   .casa-fotos .f2 { margin-top: 28px; }
   .marca-nom { font-size: .75rem; letter-spacing: .2em; }
-  .galeria-graella { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .galeria-graella > .foto:first-child { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
-  .cromos img { width: 120px; }
+  .carrusel { gap: 10px; }
+  .carrusel > * { flex-basis: 72vw; }
+  .carrusel > .cromos { flex-basis: 180px; }
   .flotant { left: 18px; text-align: center; }
 }
 @media (prefers-reduced-motion: reduce) {
